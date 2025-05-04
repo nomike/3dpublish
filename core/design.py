@@ -50,3 +50,10 @@ class Design:
         # Relationships
         self.derivatives = []  # Links to other designs
         self.remixes = []  # Parent designs if this is a remix
+
+    def __eq__(self, value):
+        if not isinstance(value, Design):
+            return NotImplemented
+        return all(
+            getattr(self, attr) == getattr(value, attr) for attr in self.__dict__.keys()
+        )
