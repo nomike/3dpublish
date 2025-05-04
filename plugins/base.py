@@ -19,30 +19,33 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 # encoding: utf-8
-"""
-Usage:
-    publish3d sync <source> <source_id> <dest>
-    publish3d sync -h | --help
-    publish3d sync --version
-"""
-import docopt
 
-# from core.engine import DesignSyncEngine
+from abc import ABC, abstractmethod
 
-# from publish3d.plugins.thingiverse import ThingiverseSource
-# from publish3d.plugins.printables import PrintablesDestination
+from core.design import Design
 
 
-def sync(source, source_id, dest):
-    pass
-    # engine = DesignSyncEngine()
-    # engine.register_plugin(ThingiverseSource(API_KEY))
-    # engine.register_plugin(PrintablesDestination(API_KEY))
-
-    # new_id = engine.sync_design(source, source_id, dest)
-    # print(f"Design synced to {dest} with ID {new_id}")
+class SourcePlugin(ABC):
+    @abstractmethod
+    def read_design(self, design_id) -> Design:
+        pass
 
 
-if __name__ == "__main__":
-    arguments = docopt.docopt(__doc__, version="Publish3D CLI 1.0")
-    # sync()
+class DestinationPlugin(ABC):
+    @abstractmethod
+    def write_design(self, design: Design) -> str:
+        pass  # returns platform-specific ID
+
+    @abstractmethod
+    def update_design(self, design_id: str, design: Design):
+        pass
+
+
+class FileHandlerPlugin(ABC):
+    @abstractmethod
+    def can_handle(self, file_path: str) -> bool:
+        pass
+
+    @abstractmethod
+    def get_metadata(self, file_path: str) -> dict:
+        pass

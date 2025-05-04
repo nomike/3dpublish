@@ -20,31 +20,37 @@
 
 # encoding: utf-8
 
-from abc import ABC, abstractmethod
 from core.design import Design
+from plugins.base import DestinationPlugin, SourcePlugin
 
 
-class SourcePlugin(ABC):
-    @abstractmethod
-    def read_design(self, design_id) -> Design:
+class ThingiverseBase:
+    """Shared functionality for Thingiverse operations"""
+
+    def __init__(self, api_key):
+        self.api_key = api_key
+        self.base_url = "https://api.thingiverse.com"
+
+    def _make_request(self, endpoint):
+        # shared request logic
+        pass
+
+    def _convert_to_design(self, api_data):
+        # shared conversion logic
         pass
 
 
-class DestinationPlugin(ABC):
-    @abstractmethod
-    def write_design(self, design: Design) -> str:
-        pass  # returns platform-specific ID
+class ThingiverseSource(ThingiverseBase, SourcePlugin):
+    name = "thingiverse"
 
-    @abstractmethod
-    def update_design(self, design_id: str, design: Design):
-        pass
+    def __init__(self, api_key):
+        self.api_key = api_key
+        self.base_url = "https://api.thingiverse.com"
+
+    def read_design(self, thing_id) -> Design:
+        raise NotImplementedError("read_design method not implemented")
 
 
-class FileHandlerPlugin(ABC):
-    @abstractmethod
-    def can_handle(self, file_path: str) -> bool:
-        pass
-
-    @abstractmethod
-    def get_metadata(self, file_path: str) -> dict:
-        pass
+class ThingiverseDestination(ThingiverseBase, DestinationPlugin):
+    # Similar structure but for writing data
+    pass

@@ -1,4 +1,5 @@
-# Copyright (c) 2025 nomike Postmann <nomike@nomike.com234>
+#!/usr/bin/env python3
+# Copyright (c) 2025 nomike Postmann <nomike@nomike.com>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
 # this software and associated documentation files (the "Software"), to deal in
@@ -17,44 +18,32 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
----
-repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
-    hooks:
-    -   id: trailing-whitespace
-    -   id: end-of-file-fixer
-    -   id: check-yaml
-    -   id: check-added-large-files
-    -   id: detect-private-key
+# encoding: utf-8
+"""
+Usage:
+    publish3d sync <source> <source_id> <dest>
+    publish3d sync -h | --help
+    publish3d sync --version
+"""
+import docopt
 
-- repo: https://github.com/psf/black
-  rev: 25.1.0
-  hooks:
-    - id: black
-      language_version: python3
+# from plugins import DestinationPlugin, FileHandlerPlugin, SourcePlugin
+# from core.engine import DesignSyncEngine
 
-- repo: https://github.com/PyCQA/flake8
-  rev: 7.2.0
-  hooks:
-  - id: flake8
-    additional_dependencies: [flake8-bugbear]
-    args: [ "--max-line-length=83" ]
+# from publish3d.plugins.thingiverse import ThingiverseSource
+# from publish3d.plugins.printables import PrintablesDestination
 
 
-- repo: https://github.com/PyCQA/isort
-  rev: 6.0.1
-  hooks:
-    - id: isort
-      name: isort (python)
+def sync(source: str, source_id: str, dest: str):
+    pass
+    # engine = DesignSyncEngine()
+    # engine.register_plugin(ThingiverseSource(API_KEY))
+    # engine.register_plugin(PrintablesDestination(API_KEY))
 
-# - repo: https://github.com/pre-commit/mirrors-mypy
-#   rev: v1.15.0
-#   hooks:
-#     - id: mypy
+    # new_id = engine.sync_design(source, source_id, dest)
+    # print(f"Design synced to {dest} with ID {new_id}")
 
-- repo: https://github.com/google/addlicense
-  rev: 499ed7f28389eb4a08c2d7e40b1637cfd7f65381
-  hooks:
-  - id: addlicense
-    args: [ "-c", "nomike Postmann <nomike@nomike.com234>", "-l", "mit", "publish3d"]
+
+if __name__ == "__main__":
+    arguments = docopt.docopt(__doc__, version="Publish3D CLI 1.0")
+    # sync()

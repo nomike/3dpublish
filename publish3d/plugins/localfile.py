@@ -20,8 +20,6 @@
 
 # encoding: utf-8
 
-import requests
-
 from core.design import Design
 from plugins.base import DestinationPlugin, SourcePlugin
 
@@ -50,27 +48,7 @@ class ThingiverseSource(ThingiverseBase, SourcePlugin):
         self.base_url = "https://api.thingiverse.com"
 
     def read_design(self, thing_id) -> Design:
-        headers = {"Authorization": f"Bearer {self.api_key}"}
-        url = f"{self.base_url}/things/{thing_id}"
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-
-        thing_data = response.json()
-        design = Design()
-
-        # Map Thingiverse fields to our canonical model
-        design.name = thing_data.get("name")
-        design.description = thing_data.get("description")
-        # ... map other fields
-
-        # Store platform-specific data
-        design.thingiverse_metadata = {
-            "license": thing_data.get("license"),
-            "details": thing_data.get("details"),
-            # etc.
-        }
-
-        return design
+        raise NotImplementedError("read_design method not implemented")
 
 
 class ThingiverseDestination(ThingiverseBase, DestinationPlugin):
