@@ -37,8 +37,10 @@ repos:
 - repo: https://github.com/PyCQA/flake8
   rev: 7.2.0
   hooks:
-    - id: flake8
-      additional_dependencies: [flake8-bugbear]
+  - id: flake8
+    additional_dependencies: [flake8-bugbear]
+    args: [ "--max-line-length=83" ]
+
 
 - repo: https://github.com/PyCQA/isort
   rev: 6.0.1
