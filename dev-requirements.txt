@@ -5,3 +5,5 @@ isort
 mypy
 pre-commit
 pytest
+types-docopt
+types-requests
