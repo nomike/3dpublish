@@ -20,7 +20,7 @@
 
 # encoding: utf-8
 
-from plugins import DestinationPlugin, FileHandlerPlugin, SourcePlugin
+from plugins.base import DestinationPlugin, FileHandlerPlugin, SourcePlugin
 
 
 class Engine:
