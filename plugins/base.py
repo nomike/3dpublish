@@ -25,27 +25,11 @@ from abc import ABC, abstractmethod
 from core.design import Design
 
 
-class SourcePlugin(ABC):
+class Plugin(ABC):
     @abstractmethod
-    def read_design(self, design_id) -> Design:
+    def read_design(self) -> Design:
         pass
 
-
-class DestinationPlugin(ABC):
     @abstractmethod
-    def write_design(self, design: Design) -> str:
+    def write_design(self, design: Design) -> None:
         pass  # returns platform-specific ID
-
-    @abstractmethod
-    def update_design(self, design_id: str, design: Design):
-        pass
-
-
-class FileHandlerPlugin(ABC):
-    @abstractmethod
-    def can_handle(self, file_path: str) -> bool:
-        pass
-
-    @abstractmethod
-    def get_metadata(self, file_path: str) -> dict:
-        pass
