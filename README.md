@@ -1,7 +1,7 @@
 # publish3d
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Python Version](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 
 A versatile tool for managing and synchronizing 3D printable designs across multiple platforms with a plugin-based architecture.
 
