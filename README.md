@@ -18,9 +18,9 @@ A versatile tool for managing and synchronizing 3D printable designs across mult
 
 ## Supported Platforms
 
-| Platform       | Read | Write |
-|----------------|------|-------|
-| Local Files    | 🚧   | 🚧    |
+| Platform        | Read | Write |
+|-----------------|------|-------|
+| Local Directory | 🚧   | 🚧    |
 
 ## Installation
 
