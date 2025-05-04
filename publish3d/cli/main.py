@@ -19,8 +19,14 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 # encoding: utf-8
-
+"""
+Usage:
+    publish3d sync <source> <source_id> <dest>
+    publish3d sync -h | --help
+    publish3d sync --version
+"""
 import docopt
+
 # from core.engine import DesignSyncEngine
 
 # from publish3d.plugins.thingiverse import ThingiverseSource
@@ -28,7 +34,8 @@ import docopt
 
 
 def sync(source, source_id, dest):
-    engine = DesignSyncEngine()
+    pass
+    # engine = DesignSyncEngine()
     # engine.register_plugin(ThingiverseSource(API_KEY))
     # engine.register_plugin(PrintablesDestination(API_KEY))
 
@@ -38,4 +45,4 @@ def sync(source, source_id, dest):
 
 if __name__ == "__main__":
     arguments = docopt.docopt(__doc__, version="Publish3D CLI 1.0")
-    sync()
+    # sync()
