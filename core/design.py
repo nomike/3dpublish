@@ -24,13 +24,16 @@
 class Design:
     def __init__(self):
         # Core metadata
-        self.name = ""
-        self.description = ""
-        self.license = ""
-        self.tags = []
-        self.authors = []
+        self.name = None
+        self.category = None
+        self.description = None
+        self.license = None
+        self.is_wip = None
+        self.tags = None
+        self.authors = None
         self.created_date = None
         self.modified_date = None
+        self.thingiverse_id = None
 
         # Content
         self.main_files = []  # STL, STEP, etc.
