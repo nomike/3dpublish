@@ -5,7 +5,7 @@
 
 A versatile tool for managing and synchronizing 3D printable designs across multiple platforms with a plugin-based architecture.
 
-**WARNING**: This project is in early development and may not be fully functional. Use at your own risk.
+**WARNING**: This project is in early design phase. It doesn't have usable functionality yet and all interfaces are likely to change.
 
 ## Features
 
