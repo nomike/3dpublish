@@ -20,35 +20,15 @@
 
 # encoding: utf-8
 
-from plugins.base import DestinationPlugin, FileHandlerPlugin, SourcePlugin
+from plugins.base import Plugin
 
 
 class Engine:
     def __init__(self):
-        self.source_plugins = {}
-        self.destination_plugins = {}
-        self.file_handlers = []
+        self.plugins = {}
 
-    def register_plugin(self, plugin):
-        if isinstance(plugin, SourcePlugin):
-            self.source_plugins[plugin.name] = plugin
-        elif isinstance(plugin, DestinationPlugin):
-            self.destination_plugins[plugin.name] = plugin
-        elif isinstance(plugin, FileHandlerPlugin):
-            self.file_handlers.append(plugin)
+    def register_plugin(self, plugin: Plugin):
+        if isinstance(plugin, Plugin):
+            self.plugins[plugin.NAME] = plugin
         else:
             raise ValueError(f"Invalid plugin: {type(plugin)}")
-
-    def sync_design(self, source_name, source_id, dest_name):
-        source = self.source_plugins[source_name]
-        destination = self.destination_plugins[dest_name]
-
-        design = source.read_design(source_id)
-        return destination.write_design(design)
-
-    def update_design(self, source_name, source_id, dest_name, dest_id):
-        source = self.source_plugins[source_name]
-        destination = self.destination_plugins[dest_name]
-
-        design = source.read_design(source_id)
-        return destination.update_design(dest_id, design)
