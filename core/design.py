@@ -20,41 +20,37 @@
 
 # -*- coding: utf-8 -*-
 
+from datetime import datetime
+from typing import Dict, List
+
 
 class Design:
     def __init__(self):
         # Core metadata
-        self.name = None
-        self.category = None
-        self.description = None
-        self.license = None
-        self.is_wip = None
-        self.tags = None
-        self.authors = None
-        self.created_date = None
-        self.modified_date = None
-        self.thingiverse_id = None
+        self.name: str = None
+        self.description: str = None
+        self.category: str = None
+        self.license: str = None
+        self.is_wip: bool = None
+        self.is_published: bool = None
+        self.tags: str = None
+        self.authors: str = None
+        self.created_date: datetime = None
+        self.modified_date: datetime = None
+        self.ids: Dict[str, List[str]] = {}
 
-        # Content
-        self.main_files = []  # STL, STEP, etc.
-        self.images = []  # Renders, photos
-        self.source_files = []  # CAD source files
-        self.attachments = []  # Additional files
+        self.files: List[Dict[str, str]] = []
 
-        # Platform-specific fields (stored as dicts to preserve structure)
-        self.thingiverse_metadata = {}
-        self.printables_metadata = {}
+        self.platform_specific: Dict[str, Dict[str, str]] = {}
 
-        # Common content that might be split differently across platforms
-        self.print_settings = ""
-        self.assembly_instructions = ""
-        self.usage_instructions = ""
+        self.print_settings: str = ""
+        self.assembly_instructions: str = ""
+        self.usage_instructions: str = ""
 
         # Relationships
-        self.derivatives = []  # Links to other designs
-        self.remixes = []  # Parent designs if this is a remix
+        self.remixes: List[str] = []  # Parent designs if this is a remix
 
-    def __eq__(self, value):
+    def __eq__(self, value) -> bool:
         if not isinstance(value, Design):
             return NotImplemented
         return all(
