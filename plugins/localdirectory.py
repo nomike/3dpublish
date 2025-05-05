@@ -52,6 +52,8 @@ class LocalDirectory(Plugin):
         "apache": "apache",
     }
 
+    __CONFIG_FILENAME = ".thingiverse_publisher.json"
+
     def __init__(self, design_id: str):
         super().__init__()
         self.directory = design_id
@@ -59,13 +61,13 @@ class LocalDirectory(Plugin):
     def read_design(self) -> Design:
 
         with open(
-            os.path.join(self.directory, ".thingiverse_publisher.json"), "r"
+            os.path.join(self.directory, LocalDirectory.__CONFIG_FILENAME), "r"
         ) as f:
             design_data = json.load(f)
 
         design = Design()
 
-        for design_property, json_path in self._MAPPING_FIELDS.items():
+        for design_property, json_path in LocalDirectory._MAPPING_FIELDS.items():
             try:
                 value = design_data[json_path[0]][json_path[1]]
                 setattr(design, design_property, value)
@@ -77,7 +79,7 @@ class LocalDirectory(Plugin):
     def write_design(self, design: Design) -> None:
         design_data: Dict[str, Union[str, Dict, List]] = {}
 
-        for design_property, json_path in self._MAPPING_FIELDS.items():
+        for design_property, json_path in LocalDirectory._MAPPING_FIELDS.items():
             value = getattr(design, design_property)
 
             def set_nested_value(data, path, value):
@@ -93,6 +95,6 @@ class LocalDirectory(Plugin):
             set_nested_value(design_data, json_path, value)
 
             with open(
-                os.path.join(self.directory, ".thingiverse_publisher.json"), "w"
+                os.path.join(self.directory, LocalDirectory.__CONFIG_FILENAME), "w"
             ) as f:
                 json.dump(design_data, f, indent=4)
