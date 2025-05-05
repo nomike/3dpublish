@@ -20,15 +20,23 @@
 
 # encoding: utf-8
 
-from plugins.base import Plugin
+from abc import ABC, abstractmethod
+from typing import ClassVar
+
+from publish3d.core.design import Design
 
 
-class Engine:
-    def __init__(self):
-        self.plugins = {}
+class Plugin(ABC):
+    """Abstract base class for plugins."""
 
-    def register_plugin(self, plugin: Plugin):
-        if isinstance(plugin, Plugin):
-            self.plugins[plugin.NAME] = plugin
-        else:
-            raise ValueError(f"Invalid plugin: {type(plugin)}")
+    NAME: ClassVar[str]
+
+    @abstractmethod
+    def read_design(self) -> Design:
+        """Abstract method to read a design."""
+        raise NotImplementedError
+
+    @abstractmethod
+    def write_design(self, design: Design) -> None:
+        """Abstract method to write a design."""
+        raise NotImplementedError

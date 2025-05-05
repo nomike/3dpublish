@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (c) 2025 nomike Postmann <nomike@nomike.com>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -17,26 +16,3 @@
 # COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-# encoding: utf-8
-
-from abc import ABC, abstractmethod
-from typing import ClassVar
-
-from core.design import Design
-
-
-class Plugin(ABC):
-    """Abstract base class for plugins."""
-
-    NAME: ClassVar[str]
-
-    @abstractmethod
-    def read_design(self) -> Design:
-        """Abstract method to read a design."""
-        raise NotImplementedError
-
-    @abstractmethod
-    def write_design(self, design: Design) -> None:
-        """Abstract method to write a design."""
-        raise NotImplementedError

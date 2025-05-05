@@ -25,6 +25,7 @@ Usage:
     publish3d sync -h | --help
     publish3d sync --version
 """
+
 import docopt
 
 # from plugins import DestinationPlugin, FileHandlerPlugin, SourcePlugin
@@ -44,6 +45,10 @@ def sync(source: str, source_id: str, dest: str):
     # print(f"Design synced to {dest} with ID {new_id}")
 
 
+def main() -> None:
+    pass
+
+
 if __name__ == "__main__":
     arguments = docopt.docopt(__doc__, version="Publish3D CLI 1.0")
-    # sync()
+    main()

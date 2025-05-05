@@ -24,8 +24,8 @@ import json
 import os
 from typing import Dict, List, Union
 
-from core.design import Design
-from plugins.base import Plugin
+from publish3d.core.design import Design
+from publish3d.plugins.base import Plugin
 
 
 class LocalDirectory(Plugin):

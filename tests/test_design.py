@@ -21,7 +21,7 @@ import copy
 
 import pytest
 
-from core.design import Design
+from publish3d.core.design import Design
 
 
 @pytest.fixture
@@ -42,6 +42,19 @@ def design():
 
 
 class TestDesign:
+
     def test_compare(self, design):
-        new_design = copy.deepcopy(design)
-        assert design == new_design
+        assert design == design
+
+    def test_copy(self, design):
+        design_copy = copy.deepcopy(design)
+        assert design == design_copy
+        assert design is not design_copy
+
+    def test_compare_different(self, design):
+        design2 = copy.deepcopy(design)
+        design2.name = "Different Design"
+        assert design != design2
+        assert design != "Not a Design"
+        assert design is not None
+        assert None is not design

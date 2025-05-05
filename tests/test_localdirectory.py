@@ -21,8 +21,8 @@ import os
 
 import pytest
 
-from core.design import Design
-from plugins.localdirectory import LocalDirectory
+from publish3d.core.design import Design
+from publish3d.plugins.localdirectory import LocalDirectory
 
 
 @pytest.fixture

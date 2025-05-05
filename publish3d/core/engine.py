@@ -18,39 +18,17 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-# -*- coding: utf-8 -*-
+# encoding: utf-8
 
-from datetime import datetime
-from typing import Dict, List
-
-import deepcompare
+from publish3d.plugins.base import Plugin
 
 
-class Design:
+class Engine:
     def __init__(self):
-        # Core metadata
-        self.name: str = None
-        self.description: str = None
-        self.category: str = None
-        self.license: str = None
-        self.is_wip: bool = None
-        self.is_published: bool = None
-        self.tags: str = None
-        self.authors: str = None
-        self.created_date: datetime = None
-        self.modified_date: datetime = None
-        self.ids: Dict[str, List[str]] = {}
+        self.plugins = {}
 
-        self.files: List[Dict[str, str]] = []
-
-        self.platform_specific: Dict[str, Dict[str, str]] = {}
-
-        self.print_settings: str = ""
-        self.assembly_instructions: str = ""
-        self.usage_instructions: str = ""
-
-        # Relationships
-        self.remixes: List[str] = []  # Parent designs if this is a remix
-
-    def __eq__(self, value) -> bool:
-        return deepcompare.compare(self, value)
+    def register_plugin(self, plugin: Plugin):
+        if isinstance(plugin, Plugin):
+            self.plugins[plugin.NAME] = plugin
+        else:
+            raise ValueError(f"Invalid plugin: {type(plugin)}")
