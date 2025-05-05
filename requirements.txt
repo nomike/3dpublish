@@ -1,5 +1,6 @@
 chardet
 docopt
 idna
+python-deepcompare
 requests
 urllib3
