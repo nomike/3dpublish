@@ -1,4 +1,4 @@
-# Copyright (c) 2025 nomike Postmann <nomike@nomike.com234>
+# Copyright (c) 2025 nomike Postmann <nomike@nomike.com>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
 # this software and associated documentation files (the "Software"), to deal in
@@ -58,4 +58,4 @@ repos:
   rev: 499ed7f28389eb4a08c2d7e40b1637cfd7f65381
   hooks:
   - id: addlicense
-    args: [ "-c", "nomike Postmann <nomike@nomike.com234>", "-l", "mit", "publish3d"]
+    args: [ "-c", "nomike Postmann <nomike@nomike.com>", "-l", "mit", "publish3d"]
