@@ -23,6 +23,8 @@
 from datetime import datetime
 from typing import Dict, List
 
+import deepcompare
+
 
 class Design:
     def __init__(self):
@@ -51,8 +53,4 @@ class Design:
         self.remixes: List[str] = []  # Parent designs if this is a remix
 
     def __eq__(self, value) -> bool:
-        if not isinstance(value, Design):
-            return NotImplemented
-        return all(
-            getattr(self, attr) == getattr(value, attr) for attr in self.__dict__.keys()
-        )
+        return deepcompare.compare(self, value)
