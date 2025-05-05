@@ -21,15 +21,22 @@
 # encoding: utf-8
 
 from abc import ABC, abstractmethod
+from typing import ClassVar
 
 from core.design import Design
 
 
 class Plugin(ABC):
+    """Abstract base class for plugins."""
+
+    NAME: ClassVar[str]
+
     @abstractmethod
     def read_design(self) -> Design:
-        pass
+        """Abstract method to read a design."""
+        raise NotImplementedError
 
     @abstractmethod
     def write_design(self, design: Design) -> None:
-        pass  # returns platform-specific ID
+        """Abstract method to write a design."""
+        raise NotImplementedError
